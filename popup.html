@@ -1,22 +1,88 @@
-<!-- popup.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YouTube Q&A Extension</title>
+  <title>Question Bar</title>
   <style>
     body {
-      width: 300px;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    #question-bar {
+      background-color: #333;
+      color: #fff;
       padding: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #question-input {
+      flex: 1;
+      margin: 8px;
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    #search-button, #pdf-button, #read-more-button {
+      flex: 0 0 100%;
+      margin: 8px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    #pdf-button {
+      background-color: #2196F3;
+    }
+
+    #additional-content {
+      display: none;
+      margin-top: 20px;
+    }
+    @media screen and (max-width: 600px) {
+      #question-input, #search-button, #pdf-button, #read-more-button {                     /* Responsive styles for smaller screens */
+        flex: 0 0 100%;
+      }
     }
   </style>
 </head>
 <body>
-  <h2>Ask a Question about the Video</h2>
-  <input type="text" id="questionInput" placeholder="Enter your question">
-  <button id="askButton">Ask</button>
-  <div id="answerContainer"></div>
-  <script src="popup.js"></script>
+
+  <div id="question-bar">
+    <input type="text" id="question-input" placeholder="Ask a question...">
+    <button id="search-button">Search</button>
+    <button id="pdf-button">Generate PDF</button>
+  </div>
+
+  <div id="additional-content">
+  </div>
+
+  <button id="read-more-button">Read more</button>
+
+  <script>
+    document.getElementById('search-button').addEventListener('click', function() {
+      var questionInput = document.getElementById('question-input').value;
+      alert('Searching for: ' + questionInput);                       // Perform search or other processing based on the question input
+    });
+
+    document.getElementById('read-more-button').addEventListener('click', function() {
+      var additionalContent = document.getElementById('additional-content');             // Toggle the visibility of the additional content
+      additionalContent.style.display = (additionalContent.style.display === 'none' || additionalContent.style.display === '') ? 'block' : 'none';
+    });
+  </script>
+
 </body>
 </html>
